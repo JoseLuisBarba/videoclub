@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\peliculaController;
+use App\Http\Controllers\CatalogueControlle;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,14 @@ Route::get('/', function () {
 
 // user
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
+Route::get('dashboard', [
+    CatalogueControlle::class, 'index'
+]);
+Route::post('/catalog/add', [CatalogueControlle::class, 'add']);
+Route::get('/catalog/edit/{id}', [CatalogueControlle::class, 'edit']);
+Route::post('/catalog/update/{id}', [CatalogueControlle::class, 'update']);
+Route::get('/catalog/delete/{id}', [CatalogueControlle::class, 'delete']);
+
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
