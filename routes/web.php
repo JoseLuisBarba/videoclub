@@ -15,12 +15,14 @@ use App\Http\Controllers\CatalogueControlle;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // user
-
+Route::get('/', [
+    CustomAuthController::class, 'index'
+]);
 Route::get('dashboard', [
     CatalogueControlle::class, 'index'
 ]);
