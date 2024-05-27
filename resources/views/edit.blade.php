@@ -13,6 +13,7 @@
     </head>
     <body>
         <div class="container mt-5">
+            <h2>Editar Película</h2>
             <form method="POST" action="/catalog/update/{{$film->id}}">
                 @csrf
                 <div class="form-group mb-2">

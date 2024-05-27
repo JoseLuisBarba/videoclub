@@ -6,7 +6,7 @@
 </head>
 
 <body>
- <!-- 
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand"  style="color:#777"><span style="font-size:15pt">&#9820;</span> Videoclub</a>
@@ -60,11 +60,11 @@
             @endif
         </div>
     </nav>
--->
 
+    <div class="container mt-5">
+        <h2>Agregar Película</h2>
         <form method="POST" action="/catalog/add">
             @csrf
-
             <div class="form-group mb-2">
                 <label for="name">Nombre de la película</label>
                 <input type="text" class="form-control" name="name" placeholder="Movie Name">
@@ -100,35 +100,37 @@
                 <textarea class="form-control" name="sypnosis" rows="5" placeholder="Enter movie synopsis"></textarea>
             </div>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">+ Agregar</button>
         </form>
+    </div>
 
 
-
-        @foreach ($films as $film)
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="https://th.bing.com/th/id/OIP.QIT1Rik7ad15fXQlAPU7CwHaEK?rs=1&pid=ImgDetMain" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$film->name}}</h5>
-                        <p class="card-text">{{$film->sypnosis}}</p>
+    <div class="container mt-5">
+        <h2>Mis películas</h2>
+        <div class="container d-flex flex-wrap align-items-center">
+                @foreach ($films as $film)
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top" src="https://th.bing.com/th/id/OIP.QIT1Rik7ad15fXQlAPU7CwHaEK?rs=1&pid=ImgDetMain" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$film->name}}</h5>
+                                <p class="card-text">{{$film->sypnosis}}</p>
+                            </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">id: {{ $film->id }}</li>
+                                    <li class="list-group-item">Año: {{ $film->year }}</li>
+                                    <li class="list-group-item">Género: {{ $film->gender }}</li>
+                                    <li class="list-group-item">Director: {{ $film->author }}</li>
+                                    <li class="list-group-item">Precio: {{ $film->price }}</li>
+                                    <li class="list-group-item">Cantidad: {{ $film->quantity }}</li>
+                                </ul>
+                            <div class="card-body">
+                                <a href="/catalog/edit/{{ $film->id }}" class="card-link">Editar</a>
+                                <a href="/catalog/delete/{{ $film->id }}" class="card-link">Eliminar</a>
+                            </div>
                     </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: {{ $film->id }}</li>
-                            <li class="list-group-item">Año: {{ $film->year }}</li>
-                            <li class="list-group-item">Género: {{ $film->gender }}</li>
-                            <li class="list-group-item">Director: {{ $film->author }}</li>
-                            <li class="list-group-item">Precio: {{ $film->price }}</li>
-                            <li class="list-group-item">Cantidad: {{ $film->quantity }}</li>
-                        </ul>
-                    <div class="card-body">
-                        <a href="/catalog/edit/{{ $film->id }}" class="card-link">Editar</a>
-                        <a href="/catalog/delete/{{ $film->id }}" class="card-link">Eliminar</a>
-                    </div>
-            </div>
-        @endforeach
-
-
-
+                @endforeach
+        </div>            
+    </div>    
 </body>
 
 </html>
